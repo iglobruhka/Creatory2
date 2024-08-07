@@ -1,0 +1,378 @@
+[gd_scene load_steps=32 format=3 uid="uid://btvioo33lp5wu"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_k37lt"]
+[ext_resource type="PackedScene" uid="uid://d0qv1gu8cdtra" path="res://Scene/bullet.tscn" id="2_ys8uv"]
+[ext_resource type="PackedScene" uid="uid://drb6rm22mcmb3" path="res://Scene/block.tscn" id="3_6byo8"]
+[ext_resource type="Resource" uid="uid://ck7oan8vpypxu" path="res://inventory/playerInv.tres" id="4_01whd"]
+[ext_resource type="PackedScene" uid="uid://bqefvgkdhqjcd" path="res://Scene/bur.tscn" id="4_ipe60"]
+[ext_resource type="Texture2D" uid="uid://c712aw4ffshuk" path="res://PlayersSprite/PlayerAnimDown.png" id="4_pl8ud"]
+[ext_resource type="Texture2D" uid="uid://djxal1kq4wkav" path="res://sprite/topdown_shooter/guns/pistol/p_down.png" id="6_1de5d"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_3xla5"]
+[ext_resource type="FontFile" uid="uid://olhglenjriyg" path="res://Font/dead-hammer.otf" id="8_mj3ul"]
+[ext_resource type="Script" path="res://Scripts/HpCollider.gd" id="9_cal02"]
+[ext_resource type="Texture2D" uid="uid://d1w1qooucqnu" path="res://sprite/topdown_shooter/other/crystal1.png" id="10_81ca6"]
+[ext_resource type="Texture2D" uid="uid://cmscmat18btof" path="res://sprite/topdown_shooter/other/Hp.png" id="11_on0kx"]
+[ext_resource type="Texture2D" uid="uid://cb5udsk7qsdsb" path="res://PlayersSprite/Player30.png" id="12_2ki4y"]
+[ext_resource type="Texture2D" uid="uid://bcsmegm222p7p" path="res://sprite/New Piskel (44) (1).png" id="12_b8g5r"]
+[ext_resource type="Texture2D" uid="uid://boty1j2xnndnc" path="res://PlayersSprite/Player3Anim (1).png" id="13_fvig1"]
+[ext_resource type="Script" path="res://SpriteVrashOrudie.gd" id="14_cl5hn"]
+[ext_resource type="PackedScene" uid="uid://chggpbegqce6j" path="res://inventory/inv_ui.tscn" id="18_8l7qm"]
+[ext_resource type="AudioStream" uid="uid://cdjbo7wfjqyhe" path="res://audio/classic_hurt.mp3" id="19_2mk0o"]
+[ext_resource type="Texture2D" uid="uid://cu3d3aq17yj1p" path="res://sprite/topdown_shooter/other/Kirka.png" id="19_3hpdb"]
+[ext_resource type="Texture2D" uid="uid://6buaxtksjdu1" path="res://sprite/topdown_shooter/other/Bur/Cavel0.png" id="24_1jj34"]
+[ext_resource type="Script" path="res://Scene/Volna.gd" id="26_iowwk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n3jm"]
+size = Vector2(14.091, 23.6366)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3fx6"]
+size = Vector2(15.0001, 24.5457)
+
+[sub_resource type="Animation" id="Animation_e6pc1"]
+resource_name = "PlayerStepLeft"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Player:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_2ki4y")]
+}
+
+[sub_resource type="Animation" id="Animation_22hgm"]
+resource_name = "PlayerStepUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_fvig1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Player:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_spxf3"]
+resource_name = "PlayerStopDown"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Player:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_pl8ud")]
+}
+
+[sub_resource type="Animation" id="Animation_i0n3g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Player:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_pl8ud")]
+}
+
+[sub_resource type="Animation" id="Animation_lws7y"]
+resource_name = "Volna_Ztux"
+length = 2.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bvpw4"]
+_data = {
+"PlayerStepLeft": SubResource("Animation_e6pc1"),
+"PlayerStepUp": SubResource("Animation_22hgm"),
+"PlayerStopDown": SubResource("Animation_spxf3"),
+"RESET": SubResource("Animation_i0n3g"),
+"Volna_Ztux": SubResource("Animation_lws7y")
+}
+
+[sub_resource type="Gradient" id="Gradient_jrger"]
+offsets = PackedFloat32Array(0, 0.681818)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_va8e0"]
+gradient = SubResource("Gradient_jrger")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(784, 527)
+scale = Vector2(2.19998, 2.19998)
+collision_layer = 3
+script = ExtResource("1_k37lt")
+bullet = ExtResource("2_ys8uv")
+buildBlock = ExtResource("3_6byo8")
+buildBurScene = ExtResource("4_ipe60")
+inv = ExtResource("4_01whd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.227234, 1.81821)
+shape = SubResource("RectangleShape2D_6n3jm")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(0.45456, -0.454551)
+scale = Vector2(0.465203, 0.44888)
+texture = ExtResource("4_pl8ud")
+vframes = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.3026, 1.35186)
+zoom = Vector2(1.06, 1.06)
+limit_smoothed = true
+script = ExtResource("7_3xla5")
+
+[node name="Canvas" type="CanvasGroup" parent="Camera2D"]
+
+[node name="Hp" type="Label" parent="Camera2D/Canvas"]
+z_index = 4
+offset_left = -163.841
+offset_top = -105.247
+offset_right = -99.8414
+offset_bottom = -60.2472
+scale = Vector2(0.366601, 0.366601)
+theme_override_fonts/font = ExtResource("8_mj3ul")
+text = "0"
+metadata/_edit_group_ = true
+
+[node name="Hp" type="Sprite2D" parent="Camera2D/Canvas/Hp"]
+position = Vector2(35.0982, 25.9544)
+scale = Vector2(0.0362769, 0.034955)
+texture = ExtResource("11_on0kx")
+
+[node name="Blox" type="Label" parent="Camera2D/Canvas"]
+z_index = 4
+offset_left = -165.056
+offset_top = -94.8197
+offset_right = -101.057
+offset_bottom = -49.8195
+scale = Vector2(0.391832, 0.387633)
+theme_override_fonts/font = ExtResource("8_mj3ul")
+text = "20"
+metadata/_edit_group_ = true
+
+[node name="Crystal1" type="Sprite2D" parent="Camera2D/Canvas/Blox"]
+position = Vector2(59.6685, 23.4203)
+scale = Vector2(0.726446, 1.0067)
+texture = ExtResource("10_81ca6")
+
+[node name="Trees" type="Label" parent="Camera2D/Canvas"]
+z_index = 4
+offset_left = 110.652
+offset_top = -103.417
+offset_right = 174.652
+offset_bottom = -58.4166
+scale = Vector2(0.566766, 0.566766)
+theme_override_fonts/font = ExtResource("8_mj3ul")
+text = "0"
+
+[node name="Crystal1" type="Sprite2D" parent="Camera2D/Canvas/Trees"]
+position = Vector2(48.1577, 21.2352)
+scale = Vector2(0.803988, 0.72455)
+texture = ExtResource("24_1jj34")
+
+[node name="Label" type="Label" parent="Camera2D/Canvas/Trees"]
+layout_mode = 0
+offset_left = 62.8438
+offset_top = 7.26644
+offset_right = 179.844
+offset_bottom = 52.2664
+theme_override_fonts/font = ExtResource("8_mj3ul")
+theme_override_font_sizes/font_size = 10
+text = "= 15 "
+
+[node name="Crystal2" type="Sprite2D" parent="Camera2D/Canvas/Trees"]
+position = Vector2(116.308, 21.6949)
+scale = Vector2(0.529423, 0.733668)
+texture = ExtResource("10_81ca6")
+
+[node name="VolnaShow" type="Timer" parent="Camera2D/Canvas"]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerNew" type="Timer" parent="Camera2D/Canvas"]
+wait_time = 0.3
+autostart = true
+
+[node name="volnashow" type="Timer" parent="Camera2D"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Icon" type="Sprite2D" parent="Camera2D"]
+z_index = 2
+position = Vector2(-156.718, -86.9434)
+scale = Vector2(1.08277, 1.04331)
+texture = ExtResource("12_b8g5r")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="HpColliderPlayer" type="Area2D" parent="."]
+script = ExtResource("9_cal02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HpColliderPlayer"]
+position = Vector2(0.227264, 1.81821)
+shape = SubResource("RectangleShape2D_f3fx6")
+
+[node name="Strong" type="Timer" parent="HpColliderPlayer"]
+
+[node name="AudioSliv" type="AudioStreamPlayer" parent="HpColliderPlayer"]
+stream = ExtResource("19_2mk0o")
+volume_db = 2.0
+
+[node name="TimerAttack" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.03
+autostart = true
+
+[node name="Orudie" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Camera2D/Canvas")
+libraries = {
+"": SubResource("AnimationLibrary_bvpw4")
+}
+autoplay = "PlayerStopDown"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.909088, 1.90735e-06)
+scale = Vector2(1.1642, 1.2236)
+energy = 0.3
+texture = SubResource("GradientTexture2D_va8e0")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-4.76837e-07, -1.36365)
+scale = Vector2(1.16364, 1.16364)
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(0.454562, 0.909103)
+scale = Vector2(0.471698, 0.471698)
+script = ExtResource("14_cl5hn")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D/Marker2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Marker2D/Marker2D"]
+position = Vector2(26.0184, 2.89094)
+rotation = -1.5708
+scale = Vector2(2.21553, 1.99398)
+texture = ExtResource("6_1de5d")
+
+[node name="Crystal1" type="Sprite2D" parent="Node2D/Marker2D/Marker2D"]
+visible = false
+position = Vector2(26.0184, 2.89092)
+scale = Vector2(0.430403, 0.780209)
+texture = ExtResource("10_81ca6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D/Marker2D/Marker2D"]
+visible = false
+position = Vector2(26.0184, 3.8546)
+rotation = 1.5738
+scale = Vector2(0.731123, 0.658007)
+texture = ExtResource("24_1jj34")
+
+[node name="Kirka" type="Sprite2D" parent="Node2D/Marker2D/Marker2D"]
+visible = false
+position = Vector2(33.8178, 3.04151)
+rotation = 1.5708
+scale = Vector2(1.18865, 1.06979)
+texture = ExtResource("19_3hpdb")
+
+[node name="Inv_UI" parent="." instance=ExtResource("18_8l7qm")]
+visible = false
+offset_left = -44.0913
+offset_top = -81.3644
+offset_right = 41.9087
+offset_bottom = -13.3644
+
+[node name="Volna" type="Label" parent="."]
+offset_left = 155.911
+offset_top = -113.637
+offset_right = 229.911
+offset_bottom = -85.6374
+scale = Vector2(1.16364, 1.16364)
+theme_override_fonts/font = ExtResource("8_mj3ul")
+theme_override_font_sizes/font_size = 10
+text = "Волна 1"
+script = ExtResource("26_iowwk")
+
+[connection signal="timeout" from="Camera2D/Canvas/VolnaShow" to="Camera2D" method="_on_volna_show_timeout"]
+[connection signal="timeout" from="Camera2D/Canvas/TimerNew" to="Camera2D" method="_on_timer_new_timeout"]
+[connection signal="timeout" from="Camera2D/volnashow" to="Camera2D" method="_on_volnashow_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="HpColliderPlayer" method="_on_timer_timeout"]
+[connection signal="area_entered" from="HpColliderPlayer" to="HpColliderPlayer" method="_on_area_entered"]
+[connection signal="area_exited" from="HpColliderPlayer" to="HpColliderPlayer" method="_on_area_exited"]
+[connection signal="timeout" from="HpColliderPlayer/Strong" to="HpColliderPlayer" method="_on_strong_timeout"]
+[connection signal="timeout" from="TimerAttack" to="HpColliderPlayer" method="_on_timer_attack_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
