@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://5uepu42hkxrh"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_x50rf"]
+[ext_resource type="Texture2D" uid="uid://b3pgu06ecgbuh" path="res://sprite/slimeSheet.png" id="2_56u1w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8cqg"]
+size = Vector2(28, 13)
+
+[sub_resource type="Animation" id="Animation_5bfkn"]
+resource_name = "slimeRunAnim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_tlaja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l0hwa"]
+_data = {
+"RESET": SubResource("Animation_tlaja"),
+"slimeRunAnim": SubResource("Animation_5bfkn")
+}
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = 3
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_x50rf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 8.5)
+shape = SubResource("RectangleShape2D_f8cqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_56u1w")
+hframes = 6
+
+[node name="StopTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l0hwa")
+}
+
+[connection signal="timeout" from="StopTimer" to="." method="_on_stop_timer_timeout"]
