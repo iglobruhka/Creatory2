@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cchcdrrmoco44"]
+
+[ext_resource type="Texture2D" uid="uid://dgltdysn8r2o3" path="res://sprite/Tools Asset 16x16/Tools Asset 16x16/10.png" id="1_d361d"]
+
+[node name="Kirka2" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d361d")
