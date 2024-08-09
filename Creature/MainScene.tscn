@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ciicby5fyrbu"]
+[gd_scene load_steps=28 format=3 uid="uid://ciicby5fyrbu"]
 
 [ext_resource type="Texture2D" uid="uid://bi4erko7gjd8t" path="res://Free Version/Spritesheet/Tilesets - Grassland/Plain-GrassToDirt.png" id="1_2bi2u"]
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_l7qh8"]
@@ -7,11 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dwh7olhn2s483" path="res://Free Version/Spritesheet/Tilesets - Grassland/Filler - Grassland.png" id="3_8s0at"]
 [ext_resource type="Texture2D" uid="uid://frufij4f1u8k" path="res://Free Version/Spritesheet/Objects - Grassland/Flowers.png" id="4_8ygnu"]
 [ext_resource type="Texture2D" uid="uid://bllgj7i325rk" path="res://Free Version/Spritesheet/Objects - Grassland/Grasses-Sheet.png" id="5_wqrcm"]
-[ext_resource type="PackedScene" uid="uid://cdjtceaei2wte" path="res://scene/stone.tscn" id="6_607ax"]
 [ext_resource type="Texture2D" uid="uid://cobxrfi24n2vk" path="res://Free Version/Spritesheet/Objects - Grassland/Rock.png" id="6_jnfb7"]
 [ext_resource type="Texture2D" uid="uid://d4jxj2s55pnuc" path="res://Free Version/Spritesheet/Objects - Grassland/Trees.png" id="7_3yfxd"]
 [ext_resource type="Texture2D" uid="uid://bbrubdkg4jm7i" path="res://sprite/PlayerAnim-Sheet.png" id="10_gp04o"]
-[ext_resource type="Script" path="res://scripts/ToolsRotate.gd" id="11_xx1jk"]
 [ext_resource type="Texture2D" uid="uid://ci018t121igg" path="res://sprite/Tools Asset 16x16/Tools Asset 16x16/00.png" id="12_6doje"]
 [ext_resource type="FontFile" uid="uid://8aa23xk0j1qx" path="res://font/dead-hammer.otf" id="13_02ntd"]
 [ext_resource type="Script" path="res://StoneKolVo.gd" id="14_db3cp"]
@@ -280,7 +278,7 @@ sources/5 = SubResource("TileSetAtlasSource_oxddg")
 sources/6 = SubResource("TileSetAtlasSource_yktk0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scubs"]
-size = Vector2(20, 11)
+size = Vector2(13, 14)
 
 [sub_resource type="Animation" id="Animation_asfe4"]
 resource_name = "PlayerRun"
@@ -319,6 +317,10 @@ _data = {
 "RESET": SubResource("Animation_dglcc")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4j04p"]
+radius = 7.0
+height = 20.0
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_q0a6g")
 
@@ -339,9 +341,16 @@ layer_2/tile_data = PackedInt32Array(-458760, 6, 0, -393224, 6, 1, -458759, 6554
 script = ExtResource("1_l7qh8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-visible = false
-position = Vector2(0, 6.5)
+position = Vector2(0.5, 3)
+scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_scubs")
+
+[node name="Tools" type="Node2D" parent="Player"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Tools"]
+position = Vector2(-8, -1)
+rotation = -1.52707
+texture = ExtResource("12_6doje")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(0, -4)
@@ -350,18 +359,6 @@ hframes = 6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2.13, 2.13)
-
-[node name="Tools" type="Node2D" parent="Player"]
-
-[node name="Marker2D" type="Marker2D" parent="Player/Tools"]
-script = ExtResource("11_xx1jk")
-
-[node name="Marker2D" type="Marker2D" parent="Player/Tools/Marker2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Player/Tools/Marker2D/Marker2D"]
-position = Vector2(22, 0)
-rotation = 0.785398
-texture = ExtResource("12_6doje")
 
 [node name="StoneKolVo" type="Label" parent="Player"]
 offset_left = 206.0
@@ -384,8 +381,20 @@ libraries = {
 }
 speed_scale = 2.0
 
-[node name="Stone3" parent="." instance=ExtResource("6_607ax")]
-position = Vector2(8, 80)
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+modulate = Color(1, 0, 0, 1)
+offset_left = -12.0
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = -12.0
+max_value = 20.0
+rounded = true
+show_percentage = false
 
-[node name="Stone4" parent="." instance=ExtResource("6_607ax")]
-position = Vector2(-112, -13)
+[node name="HpCollider" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HpCollider"]
+position = Vector2(0.3, 3)
+shape = SubResource("CapsuleShape2D_4j04p")
+
+[connection signal="body_entered" from="Player/HpCollider" to="Player" method="_on_hp_collider_body_entered"]

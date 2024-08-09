@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Outline.gdshader" id="1_3qnte"]
 [ext_resource type="Script" path="res://scripts/stone.gd" id="1_gsvjo"]
-[ext_resource type="Texture2D" uid="uid://bmvg8268ynfnb" path="res://Tools Asset 16x16/46.png" id="2_xuqty"]
+[ext_resource type="Texture2D" uid="uid://cobxrfi24n2vk" path="res://Free Version/Spritesheet/Objects - Grassland/Rock.png" id="3_5up87"]
 [ext_resource type="AudioStream" uid="uid://76ac1uwp60y3" path="res://audio/Break.mp3" id="3_gb546"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6404"]
@@ -20,6 +20,7 @@ shader_parameter/add_margins = true
 radius = 27.0
 
 [node name="Stone" type="Node2D"]
+scale = Vector2(0.68, 0.68)
 script = ExtResource("1_gsvjo")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -32,7 +33,7 @@ shape = SubResource("RectangleShape2D_s6404")
 material = SubResource("ShaderMaterial_m4fil")
 position = Vector2(1, -1)
 scale = Vector2(1.4525, 1.4525)
-texture = ExtResource("2_xuqty")
+texture = ExtResource("3_5up87")
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -7,8 +7,13 @@ var speed = 50
 func _process(delta):
 	if velocity:
 		move_and_slide()
-		position.x = clamp(position.x, 0, 1000)
-		position.y = clamp(position.y, 0, 1000)
+		position.x = clamp(position.x, 0, 500)
+		position.y = clamp(position.y, 0, 500)
+		
+		if velocity.x > 0:
+			$AnimatedSprite2D.flip_h = false
+		elif velocity.x < 0:
+			$AnimatedSprite2D.flip_h = true
 	wander()
 
 func set_distanse(dest):
@@ -28,8 +33,8 @@ func wander():
 		var x = int(randf_range(pos.x - 150, pos.x + 150))
 		var y = int(randf_range(pos.y - 150, pos.y + 150))
 		
-		x = clamp(x, 0, 1000)
-		y = clamp(y, 0, 1000)
+		x = clamp(x, 0, 500)
+		y = clamp(y, 0, 500)
 		
 		set_distanse(Vector2(x,y))
 	elif velocity != Vector2():
